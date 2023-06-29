@@ -4,7 +4,7 @@ from pynput.mouse import Button, Controller as MouseController
 from pynput.keyboard import Listener, KeyCode, Key ,Controller as KeyboardController
 
 
-mouseDelay = 0.15
+mouseDelay = 0.17
 keyboardDelay = 0.01
 button = Button.left
 start_stop_key = KeyCode(char='s')
