@@ -4,16 +4,18 @@ from pynput.mouse import Button, Controller as MouseController
 from pynput.keyboard import Listener, KeyCode, Key ,Controller as KeyboardController
 
 
-delay = 0.001
+mouseDelay = 0.001
+keyboardDelay = 1
 button = Button.left
 start_stop_key = KeyCode(char='s')
 exit_key = KeyCode(char='e')
 
 
 class ClickMouseAndEnter(threading.Thread):
-    def __init__(self, delay, button):
+    def __init__(self, mouseDelay,keyboardDelay, button):
         super(ClickMouseAndEnter, self).__init__()
-        self.delay = delay
+        self.mouseDelay = mouseDelay
+        self.keyboardDelay = keyboardDelay
         self.button = button
         self.running = False
         self.program_running = True
@@ -32,16 +34,16 @@ class ClickMouseAndEnter(threading.Thread):
         while self.program_running:
             while self.running:
                 mouse.click(self.button)
-                time.sleep(self.delay)
+                time.sleep(self.mouseDelay)
                 keyboard.press(Key.enter)
                 keyboard.release(Key.enter)
-                time.sleep(self.delay)
+                time.sleep(self.keyboardDelay)
             time.sleep(0.1)
 
 mouse = MouseController()
 keyboard = KeyboardController()
 
-click_thread = ClickMouseAndEnter(delay, button)
+click_thread = ClickMouseAndEnter(mouseDelay,keyboardDelay, button)
 click_thread.start()
 
 
