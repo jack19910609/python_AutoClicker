@@ -38,7 +38,7 @@ class ClickMouseAndEnter(threading.Thread):
                 keyboard.press(Key.enter)
                 keyboard.release(Key.enter)
                 time.sleep(self.keyboardDelay)
-            time.sleep(0.1)
+            time.sleep(0.01)
 
 mouse = MouseController()
 keyboard = KeyboardController()
